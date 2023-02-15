@@ -1,8 +1,7 @@
 
 ## Video Player
 
-- m3u8下载源 [https://github.com/imDazui/Tvlist-awesome-m3u-m3u8#%E5%B7%A5%E5%85%B7](https://github.
-com/imDazui/Tvlist-awesome-m3u-m3u8#%E5%B7%A5%E5%85%B7)
+- m3u8下载源 https://github.com/imDazui/Tvlist-awesome-m3u-m3u8#%E5%B7%A5%E5%85%B7
 - SQL
 ```sql
 create database o_disk default character set utf8mb4 collate utf8mb4_unicode_ci;
