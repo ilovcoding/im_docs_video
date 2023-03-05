@@ -67,14 +67,15 @@ public class NettyBootStrapRunner  implements ApplicationRunner, ApplicationList
                     ChannelPipeline pipeline = socketChannel.pipeline();
                     pipeline.addLast(new HttpServerCodec());
                     pipeline.addLast(new ChunkedWriteHandler());
-                    pipeline.addLast(new HttpObjectAggregator(65536));
+                    pipeline.addLast(new HttpObjectAggregator(6553600));
                     pipeline.addLast(new ChannelInboundHandlerAdapter() {
                         @Override
                         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                             if(msg instanceof FullHttpRequest) {
                                 FullHttpRequest fullHttpRequest = (FullHttpRequest) msg;
                                 String uri = fullHttpRequest.uri();
-                                if (!uri.equals(path)) {
+                                LOGGER.info("uri:: "+ uri);
+                                if (!uri.startsWith(path)) {
                                     // 访问的路径不是 websocket的端点地址，响应404
                                     ctx.channel().writeAndFlush(new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.NOT_FOUND))
                                             .addListener(ChannelFutureListener.CLOSE);
